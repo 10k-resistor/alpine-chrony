@@ -19,7 +19,7 @@ docker run -d                       \
             --cap-add SYS_NICE      \
             --cap-add SYS_TIME      \
             --cap-add SYS_RESOURCE  \
-            cwadley/alpine-chrony
+            10kresistor/alpine-chrony
 ```
 
 ### Custom Config
@@ -31,7 +31,7 @@ docker run -d                                                       \
             --cap-add SYS_TIME                                      \
             --cap-add SYS_RESOURCE                                  \
             -v <path_to_chrony.conf>:/etc/chrony/chrony.conf:ro     \
-            cwadley/alpine-chrony
+            10kresistor/alpine-chrony
 ```
 
 ## Logs
