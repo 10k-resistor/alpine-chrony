@@ -19,13 +19,18 @@ docker run -d                                                       \
 ```
 version: '3.3'
 services:
-    alpine-chrony:
-        image: 10kresistor/alpine-chrony
-        container_name: chrony
-        ports:
-            - '123:123/udp'
-        volumes:
-            - '<path_to_chrony.conf>:/etc/chrony/chrony.conf:ro'
+  alpine-chrony:
+    image: 10kresistor/alpine-chrony
+    container_name: chrony
+    ports:
+      - '123:123/udp'
+    cap_add:
+      - SYS_NICE
+      - SYS_TIME
+      - SYS_RESOURCE
+
+    volumes:
+      - ./chrony:/etc/chrony'
 ```
 
 
