@@ -1,37 +1,34 @@
-## Welcome to GitHub Pages
+## Alpine Chrony
+#### A small docker container based on alpinelinux running chrony. A NTP server.
 
-You can use the [editor on GitHub](https://github.com/10k-resistor/alpine-chrony/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+### How to start this container with docker cli
+```
+docker run -d                                                       \
+            --name chrony                                           \
+            -p 123:123/udp                                          \
+            --cap-add SYS_NICE                                      \
+            --cap-add SYS_TIME                                      \
+            --cap-add SYS_RESOURCE                                  \
+            -v <path_to_chrony.conf>:/etc/chrony/chrony.conf:ro     \
+            10kresistor/alpine-chrony
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
+### docker-compose.yaml
+```
+version: '3.3'
+services:
+    alpine-chrony:
+        image: 10kresistor/alpine-chrony
+        container_name: chrony
+        ports:
+            - '123:123/udp'
+        volumes:
+            - '<path_to_chrony.conf>:/etc/chrony/chrony.conf:ro'
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/10k-resistor/alpine-chrony/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### How to build it
+`git pull https://github.com/10k-resistor/alpine-chrony.git`
+`docker build --tag 10kresistor/alpine-chrony .`
