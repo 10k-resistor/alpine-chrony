@@ -10,7 +10,7 @@ docker run -d                                                       \
             --cap-add SYS_NICE                                      \
             --cap-add SYS_TIME                                      \
             --cap-add SYS_RESOURCE                                  \
-            -v <path_to_chrony.conf>:/etc/chrony/chrony.conf:ro     \
+            -v ./chrony:/etc/chrony                                 \
             10kresistor/alpine-chrony
 ```
 
@@ -19,7 +19,7 @@ docker run -d                                                       \
 ```
 version: '3.3'
 services:
-  alpine-chrony:
+  chrony:
     image: 10kresistor/alpine-chrony
     container_name: chrony
     ports:
@@ -32,7 +32,13 @@ services:
     volumes:
       - ./chrony:/etc/chrony'
 ```
-
+Create a file called chrony.conf in chrony/ with `nano chrony/chrony.conf` and add the following lines:
+```
+server ptbtime1.ptb.de iburst nts
+server ptbtime2.ptb.de iburst nts
+server ptbtime3.ptb.de iburst nts
+```
+Now (re)start chrony.
 
 ### How to build it
 `git pull https://github.com/10k-resistor/alpine-chrony.git`
