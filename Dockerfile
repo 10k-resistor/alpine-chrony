@@ -1,7 +1,6 @@
 FROM alpine:latest
 
-RUN apk update
-RUN apk add --no-cache chrony
+RUN apk add --update --no-cache chrony
 
 EXPOSE 123/udp
 
