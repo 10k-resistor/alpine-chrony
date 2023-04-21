@@ -32,4 +32,4 @@ jobs:
         push: true
         platforms: ${{ matrix.platform }}
         tags: |
-          ${{ secrets.DOCKER_USERNAME }}/alpine-chrony:latest-${{ matrix.platform }}
+          ${{ secrets.DOCKER_USERNAME }}/alpine-chrony:${{ matrix.platform }}-latest
