@@ -38,4 +38,3 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/alpine-chrony:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/alpine-chrony:latest-arm64
