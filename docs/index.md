@@ -11,7 +11,7 @@ docker run -d                                                       \
             --cap-add SYS_TIME                                      \
             --cap-add SYS_RESOURCE                                  \
             -v ./chrony:/etc/chrony                                 \
-            10kresistor/alpine-chrony
+            10kresistor/alpine-chrony-[amd64|arm64]
 ```
 
 
@@ -20,7 +20,7 @@ docker run -d                                                       \
 version: '3.3'
 services:
   chrony:
-    image: 10kresistor/alpine-chrony
+    image: 10kresistor/alpine-chrony-[amd64|arm64]
     container_name: chrony
     ports:
       - '123:123/udp'
