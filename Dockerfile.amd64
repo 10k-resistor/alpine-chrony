@@ -1,6 +1,6 @@
 FROM --platform=$BUILDPLATFORM alpine:latest
 
-RUN apk add --update --no-cache chrony
+RUN apk add --arch x86_64 --update --no-cache chrony
 
 EXPOSE 123/udp
 
